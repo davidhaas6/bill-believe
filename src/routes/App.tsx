@@ -13,8 +13,9 @@ const icons = {
 }
 
 const fakeBills: Bill[] = [
-  {title: "Lorem ipsum", body: "This is a body", id: "Jan 22. 2022"},
-  {title: "Lorem ipsum 2", body: `
+  { title: "Lorem ipsum", body: "This is a body", id: "Jan 22. 2022" },
+  {
+    title: "Lorem ipsumma deeznuts", body: `
     			ACHTUNG!
 			--------
 Das machine is nicht fur gerfingerpoken und mittengrabben.
@@ -23,9 +24,15 @@ Das machine is nicht fur gerfingerpoken und mittengrabben.
 Ist nicht fur gewerken by das Dummkopfen.  Das rubbernecken
 	 sightseeren keepen hands in das Pockets.
 	  Relaxen und watch das blinkenlights...
-  `, id: "Bill 324221"},
-  {title: "Mouse Balls", body: "Before proceeding, determine the type of mouse balls by examining the underside of the mouse.  Domestic balls will be larger and harder than foreign balls.  Ball removal procedures differ depending upon manufacturer of the mouse.  Foreign balls can be replaced using the pop-off method.  Domestic balls are replaced using the twist-off method.  Mouse balls are not usually static sensitive.  However, excessive handling can result in sudden discharge.  Upon completion of ball replacement, the mouse may be used immediately.", id: "69"},
-  {title: "Operators", body: `
+  `, id: "Bill No. 4423"
+  },
+  {
+    title: "Mouse Balls",
+    body: "Before proceeding, determine the type of mouse balls by examining the underside of the mouse.  Domestic balls will be larger and harder than foreign balls.  Ball removal procedures differ depending upon manufacturer of the mouse.  Foreign balls can be replaced using the pop-off method.  Domestic balls are replaced using the twist-off method.  Mouse balls are not usually static sensitive.  However, excessive handling can result in sudden discharge.  Upon completion of ball replacement, the mouse may be used immediately.",
+    id: "Proposed by: Ron Walker"
+  },
+  {
+    title: "Operators", body: `
   CN/A operators are operators that do exactly the opposite of what directory
 assistance operators are for.  See part II, for more info on CN/A & #'s.  In my
 experiences, these operators know more than the DA op's do & they are more
@@ -34,14 +41,34 @@ for the NON-PUB DA # (ie, you give them the name & they give you the unlisted
 #).  This is due to the fact that they assume your are a phellow company
 employee.  Unfortunately, the break-up has resulted in the break-up of a few
 NON-PUB #'s and policy changes in CN/A.
-  `, id: "0x!23jadfse"},
+  `, id: "0xAEF90FE14E"
+  },
 ];
 
+const fakeProbs = [
+  32,
+  "Calculating",
+  94,
+  0.01
+];
+
+
+interface BillBox {
+  bill: Bill;
+  prob: string | number;
+}
+
 function App() {
-  const [pageBills, setPageBills] = useState<Bill[]>();
+  const [pageBills, setPageBills] = useState<BillBox[]>();
   const [pageNum, setPageNum] = useState<number>(0);
 
-  useEffect(() => setPageBills(fakeBills),[]); // test data
+  useEffect(() => {
+    let boxes: BillBox[] = fakeBills.map((el, i) => {
+      const box: BillBox = { bill: el, prob: fakeProbs[i] };
+      return box;
+    });
+    setPageBills(boxes);
+  }, []); // test data
 
   return (
     <div className="app">
@@ -51,14 +78,14 @@ function App() {
         </div>
         <div className="sorting-box">
           <div className="sorting-arrow" >
-          <CgArrowDownR/>
+            <CgArrowDownR />
           </div>
           <div className="sorting-select">
-          <Form.Select>
-            <option>Probability</option>
-            <option>Date created</option>
-            <option>Date to vote</option>
-          </Form.Select>
+            <Form.Select>
+              <option>Probability</option>
+              <option>Date created</option>
+              <option>Date to vote</option>
+            </Form.Select>
           </div>
         </div>
       </div>
@@ -66,7 +93,7 @@ function App() {
       {/* <hr /> */}
 
       <div className="main-content">
-        {pageBills?.map((bill) => <BillBox bill={bill} />)}
+        {pageBills?.map((params) => <BillBox bill={params.bill} prob={params.prob} />)}
       </div>
 
       <div className="bottom-section">
@@ -77,7 +104,7 @@ function App() {
           <PageButton body={"..."} />
         </div>
         <div className="footer">
-          
+
         </div>
       </div>
     </div>

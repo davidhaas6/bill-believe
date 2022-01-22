@@ -4,21 +4,28 @@ import Bill from "../models/Bill";
 
 interface BillBoxProps {
   bill: Bill;
-  prob?: number;
+  prob?: string|number;
 }
 
 const BillBox: FunctionComponent<BillBoxProps> = ({ bill, prob }: BillBoxProps) => {
   return (
     <Card className="bill-box">
       <Card.Body>
-        <Card.Title>{bill.title}</Card.Title>
+
+        <Card.Title>
+          <div className="bill-header">
+            {bill.title}
+            {prob &&
+              <h3>{prob}{typeof(prob) === 'number' && '%'}</h3>
+            }
+          </div>
+
+        </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{bill.id}</Card.Subtitle>
         <Card.Text>
           {bill.body}
         </Card.Text>
-        {prob &&
-          <h1>{prob}%</h1>
-        }
+
       </Card.Body>
     </Card>
   );
