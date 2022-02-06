@@ -60,7 +60,7 @@ html, body, #root {
     flex-flow: row wrap;
     /* align-items: center; */
     /* padding: 0 calc(20px + 2vmax); */
-    width:100%;
+    width: 100%;
 }
 
 
@@ -73,13 +73,10 @@ html, body, #root {
     padding: 15px;
 }
 
+
 /*  top section
 =========================
 */
-
-
-
-
 
 .sorting-box {
     display: flex;
@@ -99,7 +96,7 @@ html, body, #root {
 
     color: var(--main-color);
 
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .sorting-select {
@@ -124,6 +121,7 @@ html, body, #root {
 .bill-box {
     border-radius: 10px;
     /* min-width: 300px; */
+    min-height: 200px;
 
     /* max-width: 600px; */
     width: 100%;

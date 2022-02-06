@@ -25,7 +25,6 @@ const PageButtonContainer: FunctionComponent<PageButtonContainerProps> = (props:
   const start = Math.max(curPage - either_side, 0);
   const end = Math.min(curPage + either_side + 1, numPages);
   let buttonIdxs: number[] = pageNums.slice(start, end);
-  console.log('idx', buttonIdxs);
   let buttons = [];
 
   // add ... buttons
