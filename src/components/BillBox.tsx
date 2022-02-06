@@ -4,26 +4,26 @@ import Bill from "../models/Bill";
 
 interface BillBoxProps {
   bill: Bill;
-  prob?: string|number;
 }
 
-const BillBox: FunctionComponent<BillBoxProps> = ({ bill, prob }: BillBoxProps) => {
+const BillBox: FunctionComponent<BillBoxProps> = ({ bill }: BillBoxProps) => {
+  const formattedStrings = Object.entries(bill).map(([prop,val]) => { 
+    return prop + ": \t\t" + val + "\n";
+  });
+
   return (
     <Card className="bill-box">
       <Card.Body>
 
         <Card.Title>
           <div className="bill-header">
-            {bill.title}
-            {prob &&
-              <h3>{prob}{typeof(prob) === 'number' && '%'}</h3>
-            }
+            {bill.slug}
           </div>
 
         </Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{bill.id}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">{bill.subjects}</Card.Subtitle>
         <Card.Text>
-          {bill.body}
+          {formattedStrings.map((s) => <li key={s}>{s}</li>)}
         </Card.Text>
 
       </Card.Body>

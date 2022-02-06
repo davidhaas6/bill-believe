@@ -1,10 +1,9 @@
-
-
 :root {
 
     --backg-color: #F9F9F9;
     --main-color: #282c34;
     --light-accent: #E0A370;
+    --backg-accent: #ffc0c0;
 }
 
 /* main layout
@@ -19,18 +18,27 @@ html, body, #root {
 .app {
     display: flex;
     flex-flow: column nowrap;
-    align-items: center;
-    width:100vw;
+    align-items: flex-start;
+    width: 100vw;
     /* height: 100vh; */
     height: 100%;
+    padding: 10px calc(40px + 2vmax);
 
     background-color: var(--backg-color);
 }
 
+.app-header {
+    display: flex;
+    flex-flow: row nowrap;
 
-/*  top section
-=========================
-*/
+    justify-content: left;
+    align-items: flex-start;
+    font-size: calc(60px + 2vmin);
+    width: 100%;
+    padding-left: 7px;
+
+    color: --main-color;
+}
 
 .top-section {
     max-width: 1600px;
@@ -39,35 +47,51 @@ html, body, #root {
     max-height: 30%;
 
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
 
-    padding: calc(10px + 2vmin) calc(10px + 5vmin) 0;
+    padding: 0 0 0 5px;
 }
 
-.app-header {
+
+.main-content {
     display: flex;
     flex-flow: row wrap;
-    
-    justify-content: center;
     /* align-items: center; */
-    font-size: calc(10px + 7vmin);
-    
-    color: --main-color;
+    /* padding: 0 calc(20px + 2vmax); */
+    width:100%;
 }
+
+
+.bottom-section {
+    display: Flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px;
+}
+
+/*  top section
+=========================
+*/
+
+
+
+
 
 .sorting-box {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .sorting-arrow {
     /* padding: 0px 4 */
-    display:flex;
+    display: flex;
     align-items: center;
     font-size: 42px;
 
@@ -80,7 +104,7 @@ html, body, #root {
     height: calc(10px + 4vmin);
     max-height: 42px;
 
-    display:flex;
+    display: flex;
     align-items: center;
     font-size: 64px;
 }
@@ -95,13 +119,6 @@ html, body, #root {
 
 */
 
-.main-content {
-  display:flex;
-  flex-flow: row wrap; 
-  /* align-items: center; */
-  padding: 0 calc(20px + 2vmax);
-}
-
 .bill-box {
     border-radius: 10px;
     /* min-width: 300px; */
@@ -114,7 +131,7 @@ html, body, #root {
 }
 
 .bill-header {
-    display:flex;
+    display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
 }
@@ -124,18 +141,10 @@ html, body, #root {
 
 */
 
-.bottom-section {
-    display:Flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 15px;
-}
 
 .page-buttons {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
 }
@@ -153,7 +162,7 @@ html, body, #root {
     font-weight: 600;
     font-size: 20px;
 
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -162,6 +171,13 @@ html, body, #root {
     margin: 0 10px;
 }
 
-.footer {
-
+.page-button.selected {
+    background-color: var(--backg-accent);
 }
+
+.top-page-buttons {
+    display: flex;
+    align-items: flex-start;
+}
+
+.footer {}
