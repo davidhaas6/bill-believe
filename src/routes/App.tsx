@@ -3,25 +3,23 @@ import '../assets/App.css';
 import BillBox from '../components/BillBox';
 import Bill from '../models/Bill';
 
-import { CgArrowDownR, CgArrowUpR } from "react-icons/cg";
-import { Form } from 'react-bootstrap';
 import { useLocalPredictions } from '../controllers/hooks';
 import PageButtonContainer from '../components/PageButtonContainer';
 import { PredictionContext } from '../models/Responses';
-import PageButton from '../components/PageButton';
+import SortingComponent from '../components/SortingComponent';
 
-const icons = {
-  SortDown: <CgArrowDownR />,
-  SortUp: <CgArrowUpR />
-}
 
 
 type SortingFunction = (b1: Bill, b2: Bill, desc?: boolean) => number;
 
+interface SortingOptions {
+  field: string;
+  descending: boolean;
+}
+
 function sortProbability(b1: Bill, b2: Bill, desc?: boolean): number {
   desc = desc ?? true; // default sort highest to lowest
   if (desc) {
-    console.log("sorting desc?",desc);
     return b2.raw_prediction - b1.raw_prediction;
   }
   return b1.raw_prediction - b2.raw_prediction;
@@ -38,7 +36,7 @@ function App() {
   const [sortBy, setSortBy] = useState('probability');
   const [sortDesc, setSortDesc] = useState(true);
 
-  const { status, billData } = useLocalPredictions();
+  let { status, billData } = useLocalPredictions();
 
   const totalBillCount = billData?.length;
   const billsPerPage = 5;
@@ -48,23 +46,19 @@ function App() {
   // load the 'page'
   useEffect(() => {
     if (billData) {
+
       // sort data
-      let data = billData;
       const sortFunc = getSortingFunc(sortBy);
       if (sortFunc) {
-        
-        data = billData?.sort((b1, b2) => sortFunc(b1, b2, sortDesc));
-        console.log("sortdesc",sortDesc,data[0].raw_prediction)
+        billData = billData.sort((b1, b2) => sortFunc(b1, b2, sortDesc));
       }
 
       let start = pageNum * billsPerPage;
       let end = Math.min(start + billsPerPage, billData.length);
 
-      setPageBills(() => data.slice(start, end));
+      setPageBills(() => billData?.slice(start, end));
     }
   }, [billData, pageNum, sortBy, sortDesc]);
-
-
 
   const buttons = totalBillCount && <PageButtonContainer numElements={totalBillCount} elementsPerPage={billsPerPage} curPage={pageNum} setPage={(n) => setPageNum(n)} />;
 
@@ -78,19 +72,14 @@ function App() {
           {buttons}
         </div>
 
-        <div className="sorting-box">
-          <div className="sorting-arrow" onClick={() => setSortDesc((cur) => !cur)}>
-            {sortDesc ? icons.SortDown : icons.SortUp}
+        <SortingComponent
+          directionCallback={(val) => setSortDesc(val)}
+          fieldCallback={(val) => setSortBy(val)}
+          selectedField={sortBy}
+          sortingFields={['probability']}
+          isDescending={sortDesc}
+        />
 
-          </div>
-          <div className="sorting-select">
-            <Form.Select>
-              <option>Probability</option>
-              {/* <option>Date created</option>
-              <option>Date to vote</option> */}
-            </Form.Select>
-          </div>
-        </div>
       </div>
 
       {/* <hr /> */}
