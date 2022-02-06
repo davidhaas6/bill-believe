@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Card } from "react-bootstrap";
 import {  BarLoader } from "react-spinners"; //https://www.davidhu.io/react-spinners/
-import { useBillInfo } from "../controllers/hooks";
+import { useFetchBill } from "../controllers/hooks";
 import Bill from "../models/Bill";
 
 
@@ -14,7 +14,7 @@ const BillBox: FunctionComponent<BillBoxProps> = ({ bill }: BillBoxProps) => {
     return prop + ": \t\t" + val + "\n";
   });
 
-  const { status, data: metaData } = useBillInfo(bill.slug);
+  const { status, data: metaData } = useFetchBill(bill.slug);
 
   let subtitle = bill.slug;
   if(metaData) {

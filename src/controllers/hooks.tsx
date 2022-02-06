@@ -61,7 +61,7 @@ export function useLocalPredictions(): { status: string, billData?: PredictionCo
 }
 
 
-export function useBillInfo(slug: string, session?: number) {
+export function useFetchBill(slug: string, session?: number) {
   // https://projects.propublica.org/api-docs/congress-api/bills/
   const congress_sesh = session ?? 117;
   const endpoint = `https://api.propublica.org/congress/v1/${congress_sesh}/bills/${slug}.json`;
