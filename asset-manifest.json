@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bill-believe/static/css/main.ec8164ec.css",
+    "main.js": "/bill-believe/static/js/main.1bbaedd9.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/bill-believe/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/bill-believe/index.html",
+    "main.ec8164ec.css.map": "/bill-believe/static/css/main.ec8164ec.css.map",
+    "main.1bbaedd9.js.map": "/bill-believe/static/js/main.1bbaedd9.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/bill-believe/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec8164ec.css",
+    "static/js/main.1bbaedd9.js"
+  ]
+}
