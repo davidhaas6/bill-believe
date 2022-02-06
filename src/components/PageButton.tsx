@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 
 interface PageButtonProps {
-  body: string | number;
+  body: any;
   onClick?: () => void;
 }
 
