@@ -9,6 +9,8 @@ interface FetchInfo {
   data?: any;
 }
 
+
+
 export function useFetch(request: RequestInfo, reqOptions?: RequestInit): FetchInfo {
   const [fetchState, setFetchState] = useState<FetchInfo>({ status: 'idle' })
 

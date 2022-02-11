@@ -1,28 +1,26 @@
 import { useEffect, useState } from 'react';
 import '../assets/App.css';
 import BillBox from '../components/BillBox';
-import Bill from '../models/Bill';
 
 import { useLocalPredictions } from '../controllers/hooks';
 import PageButtonContainer from '../components/PageButtonContainer';
 import { PredictionContext } from '../models/Responses';
-import SortingComponent from '../components/SortingComponent';
 
+import SearchBox from '../components/SearchBox';
 
-
-type SortingFunction = (b1: Bill, b2: Bill, desc?: boolean) => number;
+type SortingFunction = (b1: PredictionContext, b2: PredictionContext, desc?: boolean) => number;
 
 interface SortingOptions {
   field: string;
   descending: boolean;
 }
 
-function sortProbability(b1: Bill, b2: Bill, desc?: boolean): number {
+function sortProbability(p1: PredictionContext, p2: PredictionContext, desc?: boolean): number {
   desc = desc ?? true; // default sort highest to lowest
   if (desc) {
-    return b2.raw_prediction - b1.raw_prediction;
+    return p2.raw_prediction - p1.raw_prediction;
   }
-  return b1.raw_prediction - b2.raw_prediction;
+  return p1.raw_prediction - p2.raw_prediction;
 }
 
 function getSortingFunc(method: string): SortingFunction | undefined {
@@ -65,20 +63,21 @@ function App() {
   return (
     <div className="app">
       <div className="app-header">
-        Bill Believe
+        Billbelief
       </div>
       <div className="top-section">
-        <div className="top-page-buttons">
-          {buttons}
-        </div>
 
-        <SortingComponent
+        
+        <SearchBox />
+
+        {/* <SortingComponent
+        
           directionCallback={(val) => setSortDesc(val)}
           fieldCallback={(val) => setSortBy(val)}
           selectedField={sortBy}
           sortingFields={['probability']}
           isDescending={sortDesc}
-        />
+        /> */}
 
       </div>
 

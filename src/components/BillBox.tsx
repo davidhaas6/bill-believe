@@ -1,15 +1,17 @@
 import { FunctionComponent } from "react";
-import { Card } from "react-bootstrap";
-import {  BarLoader } from "react-spinners"; //https://www.davidhu.io/react-spinners/
+import { BarLoader } from "react-spinners"; //https://www.davidhu.io/react-spinners/
 import { useFetchBill } from "../controllers/hooks";
 import Bill from "../models/Bill";
+import PartyChart from "./PartyChart";
 
 
 interface BillBoxProps {
   bill: Bill;
 }
 
-const BillBox: FunctionComponent<BillBoxProps> = ({ bill }: BillBoxProps) => {
+const BillBox: FunctionComponent<BillBoxProps> = (props: BillBoxProps) => {
+  const { bill } = props;
+
   const formattedStrings = Object.entries(bill).map(([prop, val]) => {
     return prop + ": \t\t" + val + "\n";
   });
@@ -17,32 +19,31 @@ const BillBox: FunctionComponent<BillBoxProps> = ({ bill }: BillBoxProps) => {
   const { status, data: metaData } = useFetchBill(bill.slug);
 
   let subtitle = bill.slug;
-  if(metaData) {
+  if (metaData) {
     subtitle = `${metaData['sponsor_title']} ${metaData['sponsor']} (${metaData['sponsor_party']}) ~ ${metaData['sponsor_state']}`;
   }
   // console.log(metaData);
 
+
+
   return (
-    <Card className="bill-box">
-
-      {status === 'fetching' ? <BarLoader /> :
-        (
-          <Card.Body>
-            <Card.Title>
-              <div className="bill-header">
-                {metaData?.['short_title'] ? metaData['short_title'] : '...'}
-              </div>
-
-            </Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{subtitle}</Card.Subtitle>
-            <Card.Text>
-              {metaData && metaData['summary']}
-              {formattedStrings.map((s) => <li key={s}>{s}</li>)}
-            </Card.Text>
-          </Card.Body>
+    <div className="bill-container">
+      {status in ['idle', 'fetching'] ?
+        <BarLoader />
+        : (
+          <div className="bill">
+            {/* {metaData?.['short_title'] ? metaData['short_title'] : '...'} */}
+            <PartyChart 
+            demVotes={Number(bill.Democrat)}
+             repVotes={Number(bill.Republican)}
+              indVotes={Number(bill.Independent)}
+              isSenate={bill.slug.startsWith('s')}
+              />
+            
+          </div>
         )
       }
-    </Card>
+    </div>
   );
 }
 

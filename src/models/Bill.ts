@@ -1,8 +1,8 @@
 
 interface Bill {
-  Democrat: number,                 
+  Democrat: string,                 
   Republican: string,               
-  Independant: string,              
+  Independent: string,              
   Sponsor_Party: string,                  
   Bipartisan: string,               
   Number_Cosponsors: string,                   
@@ -10,8 +10,8 @@ interface Bill {
   slug: string,                     
   subjects: string,      
 
-  raw_prediction: number,           
-  final_prediction: string
+  // raw_prediction: string,           
+  // final_prediction: string
 }
 
 export default Bill;
