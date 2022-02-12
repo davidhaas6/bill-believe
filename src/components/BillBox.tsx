@@ -18,31 +18,23 @@ const BillBox: FunctionComponent<BillBoxProps> = (props: BillBoxProps) => {
 
   const { status, data: metaData } = useFetchBill(bill.slug);
 
+  if (status in ['idle', 'fetching']) return <BarLoader />;
+
+
   let subtitle = bill.slug;
   if (metaData) {
     subtitle = `${metaData['sponsor_title']} ${metaData['sponsor']} (${metaData['sponsor_party']}) ~ ${metaData['sponsor_state']}`;
   }
   // console.log(metaData);
 
-
-
   return (
     <div className="bill-container">
-      {status in ['idle', 'fetching'] ?
-        <BarLoader />
-        : (
-          <div className="bill">
-            {/* {metaData?.['short_title'] ? metaData['short_title'] : '...'} */}
-            <PartyChart 
-            demVotes={Number(bill.Democrat)}
-             repVotes={Number(bill.Republican)}
-              indVotes={Number(bill.Independent)}
-              isSenate={bill.slug.startsWith('s')}
-              />
-            
-          </div>
-        )
-      }
+      <PartyChart
+        demVotes={Number(bill.Democrat)}
+        repVotes={Number(bill.Republican)}
+        indVotes={Number(bill.Independent)}
+        isSenate={bill.slug.startsWith('s')}
+      />
     </div>
   );
 }

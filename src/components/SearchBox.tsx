@@ -15,17 +15,22 @@ const SearchBox: FunctionComponent<SearchBoxProps> = (props: SearchBoxProps) => 
     console.log(key);
   }
 
-  const css = "search-box" + (isFocused ? " focus" : "");
+  const icon = <GoSearch size={30} onClick={() => console.log("hi")} lightingColor={"black"}/>;
+
+  const searchBoxCSS = "search-box" + (isFocused ? " focus" : "");
   const placeholder = isFocused ? "" : "Query";
-  console.log(isFocused, css);
+  console.log(isFocused, searchBoxCSS);
   return (
-    <div className={css} tabIndex={0}>
+    <div className={searchBoxCSS} tabIndex={0}>
       <input type="text" className="search-input" placeholder={placeholder}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onKeyDown={(e) => handleKeyPress(e.key)}
       />
-      <GoSearch size={30} />
+      <div className="search-icon" tabIndex={1}>
+        {icon}
+      </div>
+
     </div>
   );
 }

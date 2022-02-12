@@ -1,0 +1,98 @@
+{
+    "bill_id": "hr5683-117",
+    "bill_slug": "hr5683",
+    "congress": "117",
+    "bill": "H.R.5683",
+    "bill_type": "hr",
+    "number": "H.R.5683",
+    "bill_uri": "https://api.propublica.org/congress/v1/117/bills/hr5683.json",
+    "title": "To direct the Under Secretary for Management of the Department of Homeland Security to assess contracts for covered services performed by contractor personnel along the borders of the United States, and for other purposes.",
+    "short_title": "Department of Homeland Security Border Support Services Contracts Review Act",
+    "sponsor_title": "Rep.",
+    "sponsor": "Kat Cammack",
+    "sponsor_id": "C001039",
+    "sponsor_uri": "https://api.propublica.org/congress/v1/members/C001039.json",
+    "sponsor_party": "R",
+    "sponsor_state": "FL",
+    "gpo_pdf_uri": null,
+    "congressdotgov_url": "https://www.congress.gov/bill/117th-congress/house-bill/5683",
+    "govtrack_url": "https://www.govtrack.us/congress/bills/117/hr5683",
+    "introduced_date": "2021-10-22",
+    "active": true,
+    "last_vote": null,
+    "house_passage": null,
+    "senate_passage": null,
+    "enacted": null,
+    "vetoed": null,
+    "cosponsors": 1,
+    "cosponsors_by_party": {
+        "R": 1
+    },
+    "withdrawn_cosponsors": 0,
+    "primary_subject": "Government Operations and Politics",
+    "committees": "House Homeland Security Committee",
+    "committee_codes": [
+        "HSHM"
+    ],
+    "subcommittee_codes": [],
+    "latest_major_action_date": "2022-01-21",
+    "latest_major_action": "Placed on the Union Calendar, Calendar No. 167.",
+    "house_passage_vote": null,
+    "senate_passage_vote": null,
+    "summary": "Department of Homeland Security Border Support Services Contracts Review Act This bill directs the Management Directorate of the Department of Homeland Security to assess active contracts for services related to border security awarded in FY2021 or earlier. The assessment must include a strategy to enhance coordination, minimize overlap, and increase cost-effectiveness among such contracts.",
+    "summary_short": "Department of Homeland Security Border Support Services Contracts Review Act This bill directs the Management Directorate of the Department of Homeland Security to assess active contracts for services related to border security awarded in FY2021 or earlier. The assessment must include a strategy to enhance coordination, minimize overlap, and increase cost-effectiveness among such contracts.",
+    "cbo_estimate_url": null,
+    "versions": [
+        {
+            "status": "Reported in House",
+            "title": "RH",
+            "url": "https://www.govinfo.gov/content/pkg/BILLS-117hr5683rh/xml/BILLS-117hr5683rh.xml",
+            "congressdotgov_url": "https://www.congress.gov/bill/117th-congress/house-bill/5683/text/rh"
+        },
+        {
+            "status": "Introduced in House",
+            "title": "IH",
+            "url": "https://www.govinfo.gov/content/pkg/BILLS-117hr5683ih/xml/BILLS-117hr5683ih.xml",
+            "congressdotgov_url": "https://www.congress.gov/bill/117th-congress/house-bill/5683/text/ih"
+        }
+    ],
+    "actions": [
+        {
+            "id": 5,
+            "chamber": "House",
+            "action_type": "Calendars",
+            "datetime": "2022-01-21",
+            "description": "Placed on the Union Calendar, Calendar No. 167."
+        },
+        {
+            "id": 4,
+            "chamber": "House",
+            "action_type": "Committee",
+            "datetime": "2022-01-21",
+            "description": "Reported (Amended) by the Committee on Homeland Security. H. Rept. 117-232."
+        },
+        {
+            "id": 3,
+            "chamber": "House",
+            "action_type": "Committee",
+            "datetime": "2021-10-26",
+            "description": "Ordered to be Reported (Amended) by Voice Vote."
+        },
+        {
+            "id": 2,
+            "chamber": "House",
+            "action_type": "Committee",
+            "datetime": "2021-10-26",
+            "description": "Committee Consideration and Mark-up Session Held."
+        },
+        {
+            "id": 1,
+            "chamber": "House",
+            "action_type": "IntroReferral",
+            "datetime": "2021-10-22",
+            "description": "Referred to the House Committee on Homeland Security."
+        }
+    ],
+    "presidential_statements": [],
+    "votes": []
+}

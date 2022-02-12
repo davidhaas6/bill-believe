@@ -43,7 +43,10 @@ const renderActiveShape = (props: any) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+      <text x={cx} y={cy} dy={-20} textAnchor="middle" fill={fill}>
+        {`${(percent * 100).toFixed(2)}%`}
+      </text>
+      <text x={cx} y={cy} textAnchor="middle" fill={fill}>
         {payload.name}
       </text>
       <Sector
@@ -64,14 +67,14 @@ const renderActiveShape = (props: any) => {
         outerRadius={outerRadius + 10}
         fill={fill}
       />
-      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">
+      {/* <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" /> */}
+      {/* <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" /> */}
+      {/* <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">
         {`${(percent * 100).toFixed(2)}%`}
       </text>
       <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
         {`(${subtitle})`}
-      </text>
+      </text> */}
     </g>
   );
 };
@@ -106,31 +109,32 @@ const PartyChart: FunctionComponent<PartyChartProps> = (props: PartyChartProps) 
   if (undecided > 0) data.push({ name: "Undecided", value: undecided })
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={300} height={400}>
-        <Pie
-
-          activeIndex={activeIndex}
-          activeShape={renderActiveShape}
-          data={data}
-          cx="50%"
-          cy="50%"
-          paddingAngle={2}
-          endAngle={180}
-          innerRadius={60}
-          outerRadius={80}
-          minAngle={5}
-          fill="#8884d8"
-          dataKey="value"
-          onMouseEnter={(_, i) => { setActiveIndex(i) }}
-        >
-          {/* color the sections */}
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
+    <div className="party-chart">
+      <ResponsiveContainer width="99%" aspect={1}>
+        <PieChart >
+          <Pie
+            activeIndex={activeIndex}
+            activeShape={renderActiveShape}
+            data={data}
+            cx="50%"
+            cy="50%"
+            paddingAngle={2}
+            endAngle={180}
+            innerRadius={60}
+            outerRadius={80}
+            minAngle={5}
+            fill="#8884d8"
+            dataKey="value"
+            onMouseEnter={(_, i) => { setActiveIndex(i) }}
+          >
+            {/* color the sections */}
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 
